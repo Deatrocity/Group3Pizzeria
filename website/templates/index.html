@@ -23,6 +23,21 @@
 
         }
         
+        .welcomemessage {
+            margin-left: 50px;
+            margin-right: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .home {
+        text-align: center; /* Center the content inside .home */
+        }
+
+        .heroimage {
+            text-align: center;
+        }
+
     </style>
     <title>Group 3 Pizza - Home</title>
 </head>
@@ -37,7 +52,7 @@
                 <li><a href="{% url 'specials' %}">Specials</a></li>
                 <li><a href="{% url 'cart' %}">Cart</a><span id="cartCount"></span></li>
                 {% if user.username %}
-                    <li><p3>Hello, {{ user.username }}!</p3></li>
+                    <li><p3 class="welcomemessage">Hello, {{ user.username }}!</p3></li>
                     <li><a href="{% url 'logout' %}">Sign out</a></li>
                 {% else %}
                     <li><a href="{% url 'account' %}">Create Account</a></li>
@@ -45,25 +60,16 @@
                 {% endif %}
             </ul>
         </nav>
-        <h1>Group 3 Pizzeria Home</h1>
+        <h1>Welcome to Group 3 Pizzeria!</h1>
     </header>
     <main>
-        <div class="home">
-            <div id="home-special">
-                <img src="{% static 'img/group3pizzalogo.png' %}" alt="Tasty pizza at a fair price!" width="400">
-                <img src="{% static 'img/pepperonipizza.jpg' %}"alt="Tasty pizza at a fair price!" width="400">
-                <button class="add-to-cart" onclick="addToCart('Ultimate Combo', 18.99);">Add to Cart</button>
+        <div class="cart-container">
+            <div class ="heroimage">
+                <img src="{% static 'img/group3pizzalogo.png' %}" alt="Logo" width="400">
+            </div>
+            <div class = "heroimage">
+                <img src="{% static 'img/pepperonipizza.jpg' %}"alt="Picture of pizza" width="400">
                 <h3>Tasty Pizza at a Fair Price!</h3>
-                <ul class="item-description">
-                </ul>
-            </div>
-            <div>
-                <!-- Apply the style to the paragraph element here -->
-                <p>Serving up slices</p>
-            </div>
-            <div id="home-pizzeriahero1">
-                <img src="{% static 'img/pizzaoven.jpg' %}" alt="Pizza Oven" width="300">
-                <h1>Come Visit Us!</h1>
             </div>
         </div>
         <script src="{% static 'js/script.js' %}"></script>

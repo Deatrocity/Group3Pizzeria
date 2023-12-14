@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unna&display=swap" rel="stylesheet">
+    <style>
+        .welcomemessage {
+            margin-left: 50px;
+            margin-right: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
     <title>Group 3 Pizza</title>
 </head>
 <body>
@@ -20,7 +28,7 @@
                 <li><a href="{% url 'specials' %}">Specials</a></li>
                 <li><a href="{% url 'cart' %}">Cart</a><span id="cartCount"></span></li>
                 {% if user.username %}
-                    <li><p3>Hello, {{ user.username }}!</p3></li>
+                    <li><p3 class="welcomemessage">Hello, {{ user.username }}!</p3></li>
                     <li><a href="{% url 'logout' %}">Sign out</a></li>
                 {% else %}
                     <li><a href="{% url 'account' %}">Create Account</a></li>
