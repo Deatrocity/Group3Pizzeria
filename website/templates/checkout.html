@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unna&display=swap" rel="stylesheet">
+    <title>Group 3 Pizza</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="{% static 'img/group3pizzalogo.png' %}" alt="Logo">
+            <ul class="nav-list">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'menu' %}">Menu</a></li>
+                <li><a href="{% url 'specials' %}">Specials</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a><span id="cartCount"></span></li>
+                <li><a href="{% url 'account' %}">Create Account</a></li>
+                <li><a href="{% url 'loginpage' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="checkout-style">
+            <h1>Thank you for choosing Group 3 Pizza!</h1>
+            <h2>Your order will be ready soon!</h2>
+        </div>
+    </main>
+</body>
+</html>
