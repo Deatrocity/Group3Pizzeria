@@ -1,11 +1,13 @@
 var cartItemQuantity = 0;
 
+// handles total cart count to display on nav link
 function cartCounter() {
     cartItemQuantity += 1;
     var cartCount = document.getElementById("cartCount").innerHTML = " (" + cartItemQuantity + ")";
     sessionStorage.setItem(cartCount);
 };
 
+// keeps track of total number of items in cart
 function cartTotal() {
     var total = 0;
     for (let i = 0; i < cartItems.length; i++) {
@@ -16,12 +18,14 @@ function cartTotal() {
 
 cartItems = JSON.parse(sessionStorage.getItem('cartItem')) || [];
 
+// adds items to cart when button is pressed
 function addToCart(name, price) {
     cartItems.push({name: name, price: price });
     updateCart();
     cartCounter();
 }
 
+// updates the current session cart
 function updateCart() {
     sessionStorage.setItem('cartItem', JSON.stringify(cartItems));
 }
@@ -33,6 +37,7 @@ addToCartButtons.forEach(function(button) {
     });
 });
 
+// displays the cart information
 function displayCart() {
     var cartItemStrings = cartItems.map(function(item) {
         return item.name + ': $' + item.price;
@@ -51,6 +56,7 @@ function displayCart() {
     cartTotal();
 };
 
+// clears the current cart
 function clearCart() {
     cartItems = [];
     updateCart();
