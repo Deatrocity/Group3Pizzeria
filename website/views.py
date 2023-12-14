@@ -1,73 +1,61 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import UserAccountForm, LoginForm
-from django.http import HttpResponse
-from .models import UserAccount
-
+from .forms import LoginForm, SignUpForm
 
 
 def home(request):
-    return render(request, 'index.html', {})
+    return render(request, 'index.html', {'user': request.user})
 
 def menu(request):
-    return render(request, 'menu.html', {})
+    return render(request, 'menu.html', {'user': request.user})
 
 def specials(request):
-    return render(request, 'specials.html', {})
+    return render(request, 'specials.html', {'user': request.user})
 
 def cart(request):
-    return render(request, 'cart.html', {})
+    return render(request, 'cart.html', {'user': request.user})
 
 def account(request):
     return render(request, 'account.html', {})
 
-# def login_page(request):
-#     return render(request, 'login.html', {})
-
 def login_page(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            # Handle form submission and authentication if needed
-            pass
-    else:
-        form = LoginForm()
-
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {})
 
 def checkout(request):
-    return render(request, 'checkout.html', {})
+    return render(request, 'checkout.html', {'user': request.user})
 
-def create_account(request):
+def signup(request):
     if request.method == 'POST':
-        form = UserAccountForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Account successfully created!')
+            user = form.save()
+            login(request, user)
+            print("account created success")
+            return redirect('home')  # Redirect to the home page or any desired page
         else:
-            messages.error(request, 'Account creation failed. Please check the form data.')
+            print("account creation fail")
     else:
-        form = UserAccountForm()
-
+        form = SignUpForm()
     return render(request, 'account.html', {'form': form})
 
-def login_view(request):
+def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        # Authenticate using your UserAccount model
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
             login(request, user)
-            messages.success(request, 'Login successful!')
-            # return redirect('home')  # Redirect to the home page or any desired page
+            print("login success")
+            return redirect('home')  # replace 'home' with your home view name
         else:
-            messages.error(request, 'Login failed, check username and password.')
+            print("login fail")
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
-    return render(request, 'login.html')
+def logout_user(request):
+    logout(request)
+    return redirect('home')
 
 
 

@@ -36,8 +36,13 @@
                 <li><a href="{% url 'menu' %}">Menu</a></li>
                 <li><a href="{% url 'specials' %}">Specials</a></li>
                 <li><a href="{% url 'cart' %}">Cart</a><span id="cartCount"></span></li>
-                <li><a href="{% url 'account' %}">Create Account</a></li>
-                <li><a href="{% url 'loginpage' %}">Login</a></li>
+                {% if user.username %}
+                    <li><p3>Hello, {{ user.username }}!</p3></li>
+                    <li><a href="{% url 'logout' %}">Sign out</a></li>
+                {% else %}
+                    <li><a href="{% url 'account' %}">Create Account</a></li>
+                    <li><a href="{% url 'loginpage' %}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
         <h1>Group 3 Pizzeria Home</h1>

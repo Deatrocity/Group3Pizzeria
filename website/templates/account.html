@@ -89,15 +89,11 @@
         <h1>User Account Creation</h1>
     </header>
     <main>
-        <form method="post" action="{% url 'create_account' %}" id="accountForm">
+        <!-- put form here -->
+        <form method="post" action="{% url 'signup' %}">
             {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        
-            <button type="submit">Create Account</button>
+            {{ form.as_p }}
+            <button type="submit">Create New Account</button>
         </form>
 
         {% for message in messages %}

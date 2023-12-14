@@ -104,15 +104,10 @@
     </header>
     <main>
         
-        <form method="post" action="{% url 'loginresult' %}" id="loginForm">
+        <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Login to Account</button>
+            {{ form.as_p }}
+            <button type="submit">Login</button>
         </form>
         
         {% for message in messages %}
