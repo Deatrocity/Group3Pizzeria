@@ -23,6 +23,18 @@ def login_page(request):
     return render(request, 'login.html', {})
 
 def checkout(request):
+    if request.method == 'POST':
+        # Retrieve user details from the form
+        first_name = request.POST.get('first_name')
+        address = request.POST.get('address')
+
+        # Process the checkout and render the checkout.html template
+        # You can pass first_name and address to the context if needed
+
+        return render(request, 'checkout.html', {'user': request.user, 'first_name': first_name, 'address': address})
+
+    # Handle GET request if needed
+
     return render(request, 'checkout.html', {'user': request.user})
 
 def signup(request):

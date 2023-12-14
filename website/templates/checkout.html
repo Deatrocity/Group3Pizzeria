@@ -17,6 +17,7 @@
         }
     </style>
     <title>Group 3 Pizza</title>
+    
 </head>
 <body>
     <header>
@@ -38,10 +39,29 @@
         </nav>
     </header>
     <main>
-        <div id="checkout-style">
-            <h1>Thank you for choosing Group 3 Pizza!</h1>
-            <h2>Your order will be ready soon!</h2>
+        <div id="around-cart-container">
+            <div id="checkout-style">
+                <div class="spacing">
+                    <div class="cart-top-container">
+                        <h2 id="cart-quantity">0 Items</h2>
+                    </div>
+                    <p></p>
+                    <div class="cart-bottom-container">
+                        <form action="{% url 'checkout' %}" method="post">
+                            {% csrf_token %}
+                            <pre id="cart-info"></pre>
+                            <h3 id="cart-total">Total: $0.00</h3>
+                        </form>
+                    </div>
+                    <h1>Thanks for your order, {{ first_name }}!</h1>
+                    <p>Delivery Address: {{ address }}</p>
+                </div>
+            </div>
         </div>
     </main>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        window.onload = displayCart();
+    </script>
 </body>
 </html>
